@@ -1,0 +1,3 @@
+[submodule "RationalNumerics"]
+	path = RationalNumerics
+	url = https://github.com/c-ohle/RationalNumerics.git
