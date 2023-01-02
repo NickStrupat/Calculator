@@ -1,29 +1,23 @@
 grammar Calc;
 
-calculation: expr EOF;
+calculation: expression EOF;
 
-expr
-	: '(' expr ')' # parenthesis
-	| expr operator expr # binary
+expression
+	: '(' expression ')' # parenthesis
+	| expression operator expression # binary
 	| Number # atom
 	;
 
 operator
-	: Plus #add
-	| Minus #sub
-	| Asterisk #mul
-	| Slash #div
-	| Percent #mod
-	| Asterisk Asterisk #pow
-	| Slash Slash #root
+	: '+' #add
+	| '-' #sub
+	| '*' #mul
+	| '/' #div
+	| '%' #mod
+	| '**' #pow
+	| '//' #root
 	;
 
 Number: [0-9]+ ('.'[0-9]+)?;
-
-Plus: '+';
-Minus: '-';
-Asterisk: '*';
-Slash: '/';
-Percent: '%';
 
 Ws: [\p{White_Space}] -> skip;

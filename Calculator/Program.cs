@@ -4,21 +4,24 @@ using static CalcParser;
 
 for (;;)
 {
-	var line = Console.ReadLine() ?? String.Empty;
+	var line = Console.ReadLine();
+	if (String.IsNullOrEmpty(line))
+		break;
 	
 	var lexer = new CalcLexer(CharStreams.fromString(line));
 	var parser = new CalcParser(new CommonTokenStream(lexer));
-	
+
 	var visitor = new ExpressionVisitor<Double>();
-	var result = visitor.Visit(parser.calculation().expr());
+	var result = visitor.Visit(parser.calculation().expression());
+	
 	Console.WriteLine(result.ToString());
 }
 
 sealed class ExpressionVisitor<T> : CalcBaseVisitor<T> where T : INumber<T>, IPowerFunctions<T>
 {
-	public override T VisitParenthesis(ParenthesisContext context) => Visit(context.expr());
+	public override T VisitParenthesis(ParenthesisContext context) => Visit(context.expression());
 	public override T VisitAtom(AtomContext context) => T.Parse(context.GetText(), provider: null);
-	public override T VisitBinary(BinaryContext bc) => Operate(bc.@operator(), Visit(bc.expr(0)), Visit(bc.expr(1)));
+	public override T VisitBinary(BinaryContext bc) => Operate(bc.@operator(), Visit(bc.expression(0)), Visit(bc.expression(1)));
 
 	private static T Operate(OperatorContext context, T left, T right) => context switch
 	{
