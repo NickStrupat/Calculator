@@ -1,19 +1,20 @@
 grammar Calc;
 
-calculation: expression EOF;
+calculation: expr EOF;
 
-expression
-	: expression operator expression # binary
+expr
+	: '(' expr ')' # parenthesis
+	| expr operator expr # binary
 	| Number # atom
 	;
 
 operator
-	: Plus #addition
-	| Minus #subtraction
-	| Asterisk #multiplication
-	| Slash #division
-	| Percent #modulo
-	| Asterisk Asterisk #power
+	: Plus #add
+	| Minus #sub
+	| Asterisk #mul
+	| Slash #div
+	| Percent #mod
+	| Asterisk Asterisk #pow
 	| Slash Slash #root
 	;
 
