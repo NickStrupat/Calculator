@@ -17,8 +17,4 @@
         <Antlr4 Include="Calc.g4" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\RationalNumerics\System.Numerics.Rational\System.Numerics.Rational.csproj" />
-    </ItemGroup>
-
 </Project>
