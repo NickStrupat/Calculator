@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using Antlr4.Runtime;
 using static CalcParser;
 
@@ -11,10 +12,10 @@ for (;;)
 	var lexer = new CalcLexer(CharStreams.fromString(line));
 	var parser = new CalcParser(new CommonTokenStream(lexer));
 
-	var visitor = new ExpressionVisitor<Double>();
+	var visitor = new ExpressionVisitor<BigRational>();
 	var result = visitor.Visit(parser.calculation().expression());
 	
-	Console.WriteLine(result.ToString());
+	Console.WriteLine(result);
 }
 
 sealed class ExpressionVisitor<T> : CalcBaseVisitor<T> where T : INumber<T>, IPowerFunctions<T>
