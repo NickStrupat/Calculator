@@ -1,14 +1,12 @@
 grammar Calc;
 
-calculation: expression EOF;
-
-expression
-	: '(' expression ')' # parenthesis
-	| expression operator expression # binary
+expr
+	: '(' expr ')' # parenthesis
+	| expr op expr # binary
 	| Number # atom
 	;
 
-operator
+op
 	: '+' #add
 	| '-' #sub
 	| '*' #mul
@@ -16,7 +14,7 @@ operator
 	| '%' #mod
 	| '**' #pow
 	| '//' #root
-	;
+;
 
 Number: [0-9]+ ('.'[0-9]+)?;
 

@@ -2,15 +2,12 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <WarningsAsErrors>nullable</WarningsAsErrors>
+        <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
         <PackageReference Include="Antlr4BuildTasks" Version="12.8.0" />
-        <PackageReference Include="BigRational" Version="1.0.0.7" />
     </ItemGroup>
 
     <ItemGroup>
