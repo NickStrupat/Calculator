@@ -26,7 +26,7 @@ class ExpressionVisitor : CalcBaseVisitor<TNum>
 		DivContext => left / right,
 		ModContext => left % right,
 		PowContext => TNum.Pow(left, right),
-		RootContext => TNum.RootN(left, right % 1 < TNum.Epsilon ? (Int32)right : throw new($"Root must be an integer: {right}")),
+		RootContext => TNum.RootN(left, TNum.IsInteger(right) ? (Int32)right : throw new($"Root must be an integer: {right}")),
 		_ => throw new($"Unknown operator: {x.GetText()}")
 	};
 }
